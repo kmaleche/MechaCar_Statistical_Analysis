@@ -14,3 +14,24 @@ summary(lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_cleara
 
 #Save your MechaCarChallenge.RScript file to your GitHub repository.
 
+
+
+# Read in suspension coil data
+coil_df <- read.csv(file='Suspension_Coil.csv',check.names=F,stringsAsFactors=F)
+
+#Write an RScript that creates a total_summary dataframe using the summarize() function 
+#to get the mean, median, variance, and standard deviation of the suspension coil’s PSI column
+total_summary <- coil_df %>%
+  summarise(mean = mean(PSI), median = median(PSI), variance = var(PSI), SD = sd(PSI, na.rm=FALSE), n = n())
+
+
+# create a lot_summary dataframe using the group_by() and the summarize() functions 
+#to group each manufacturing lot by the mean, median, variance, and standard deviation 
+#of the suspension coil’s PSI column.
+lot_summary <- coil_df %>%
+  group_by(Manufacturing_Lot) %>%
+  summarise(mean = mean(PSI), median = median(PSI), variance = var(PSI), SD = sd(PSI, na.rm=FALSE), n = n())
+
+
+
+
